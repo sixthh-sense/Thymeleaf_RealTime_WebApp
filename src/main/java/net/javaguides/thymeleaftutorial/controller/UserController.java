@@ -5,6 +5,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 public class UserController {
 
@@ -41,5 +44,18 @@ public class UserController {
     @GetMapping("fragment-expression")
     public String fragmentExpression() {
         return "fragment-expression";
+    }
+
+    @GetMapping("/users")
+    public String users(Model model) {
+        User admin = new User("Admin", "admin@gmail.com", "ADMIN", "Female");
+        User HaeIn = new User("Hae-In", "jeranum8@gmail.com", "USER", "Female");
+        User Imir = new User("Imir", "maeve666@gmail.com", "USER", "Male");
+        List<User> users = new ArrayList<>();
+        users.add(admin);
+        users.add(HaeIn);
+        users.add(Imir);
+        model.addAttribute("users", users);
+        return "users";
     }
 }
